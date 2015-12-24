@@ -7,16 +7,23 @@ public class EnemyGenerator : MonoBehaviour {
 	public GameObject enemyRight;
 	public GameObject enemyLeft;
 	public GameObject goodBoy;
-	
+
 	// Update is called once per frame
-	int count = 0;
 	void Update () {
-		if (Time.frameCount % 60 == 0) {
+		if (Time.frameCount % 40 == 0) {
 			GameObject a;
-			if (count++ % 2 == 0) {
-				a = (GameObject)Instantiate(enemyRight); 
+			int r =  Random.Range(0, 1000);
+			if (r <= 20) {
+				// TODO bonus
+			}
+			if (r <= 200) {
+				a = (GameObject)Instantiate(goodBoy);
 			} else {
-				a = (GameObject)Instantiate(enemyLeft); 
+				if (r%2 == 0) {
+					a = (GameObject)Instantiate(enemyRight); 
+				} else {
+					a = (GameObject)Instantiate(enemyLeft); 
+				}
 			}
 			canvas.SendMessage("AddEnemy", a);
 		}

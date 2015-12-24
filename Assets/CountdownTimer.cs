@@ -17,7 +17,7 @@ public class CountdownTimer : MonoBehaviour {
 	public void reset() {
 		timer = GetComponent<Text> ();
 		currentTimestamp = initialTime;
-		timer.text = ((int)currentTimestamp) + "s";
+		timer.text = ((int)currentTimestamp) + "";
 	}
 
 	void Update () {
