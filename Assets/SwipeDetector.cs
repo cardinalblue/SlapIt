@@ -16,6 +16,7 @@ public class SwipeDetector : MonoBehaviour {
 	}
 
 	void moveUp() {
+		mgr.EatBonus ();
 	}
 
 	void moveDown() {

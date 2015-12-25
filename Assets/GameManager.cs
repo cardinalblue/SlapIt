@@ -16,10 +16,40 @@ public class GameManager : MonoBehaviour {
 	public void Start() {
 		source = GetComponent<AudioSource> ();
 	}
+	public void EatBonus() {
+		if (currentPeople.isBonus) {
+			source.PlayOneShot(bonusAudio);
+			currentScore += currentPeople.score;
+			currentPeople.getBonus();
+			currentPeople = null;
+			score.text = "" + currentScore;
+		}
+	}
 	public void AttackEnemy(int direction) {
 		if (currentPeople != null) {
 			PeopleAttr attr = currentPeople;
-			if (attr.isEnemy) {
+			if (!attr.isEnemy && !attr.isBonus) {
+				source.PlayOneShot(hostageAudio);
+				currentScore -= attr.score;
+				switch(direction) {
+				case 2:
+					attr.left();
+					break;
+				case 1:
+					attr.right();
+					break;
+				}
+			} else if (attr.isBonus) {
+				source.PlayOneShot(slapAudio);
+				switch(direction) {
+				case 2:
+					attr.left();
+					break;
+				case 1:
+					attr.right();
+					break;
+				}
+			} else {
 				switch(direction) {
 				case 2:
 					if (!attr.isLeftDefensed) {
@@ -38,9 +68,6 @@ public class GameManager : MonoBehaviour {
 					}
 					break;
 				}
-			} else {
-				source.PlayOneShot(hostageAudio);
-				currentScore -= attr.score;
 			}
 			score.text = "" + currentScore;
 		}
@@ -61,10 +88,6 @@ public class GameManager : MonoBehaviour {
 			currentPeople = null;
 			score.text = "" + currentScore;
 		}
-	}
-
-	void GetBonus() {
-		// TODO
 	}
 
 	public void TimesUp() {

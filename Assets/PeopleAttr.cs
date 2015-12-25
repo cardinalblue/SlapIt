@@ -9,12 +9,19 @@ public class PeopleAttr : MonoBehaviour {
 
 	// TODO refactor
 	public bool isEnemy = false;
+	public bool isBonus = false;
+
 	Animator anim;
 
 	public void Start() {
 		anim = GetComponent<Animator>();
 	}
 
+    public void getBonus() {
+		if (isBonus) {
+			anim.Play ("Move Up");
+		}
+	}
 	public void left() {
 	//	animation.Play ("swipe_left");
 		anim.Play ("Die State Left");
