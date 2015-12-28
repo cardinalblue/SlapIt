@@ -15,6 +15,7 @@ public class PeopleAttr : MonoBehaviour {
 
 	public void Start() {
 		anim = GetComponent<Animator>();
+		anim.applyRootMotion = true;
 	}
 
     public void getBonus() {
@@ -23,12 +24,10 @@ public class PeopleAttr : MonoBehaviour {
 		}
 	}
 	public void left() {
-	//	animation.Play ("swipe_left");
 		anim.Play ("Die State Left");
 	}
 
 	public void right() {
-		// anim.SetTrigger (swipeRightHash);
 		anim.Play ("Die State Right");
 	}
 

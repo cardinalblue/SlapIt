@@ -16,7 +16,7 @@ public class EnemyGenerator : MonoBehaviour {
 			int r =  Random.Range(0, 1000);
 			if (r <= 80) {
 				a = (GameObject)Instantiate(bonusObj);
-			} else if (r <= 800) {
+			} else if (r <= 200) {
 				a = (GameObject)Instantiate(goodBoy);
 			} else {
 				if (r%2 == 0) {

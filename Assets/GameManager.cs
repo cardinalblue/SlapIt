@@ -13,9 +13,21 @@ public class GameManager : MonoBehaviour {
 	private PeopleAttr currentPeople; // FIXME we can handle multiple people in the same time
 	private int currentScore = 0; // TODO refactor by accessorator
 
+	public Button debugDown;
+	public Button debugUp;
+	public Button debugLeft;
+	public Button debugRight;
+
 	public void Start() {
 		source = GetComponent<AudioSource> ();
+		if (Application.platform != RuntimePlatform.OSXPlayer && Application.platform != RuntimePlatform.OSXEditor) {
+			debugDown.gameObject.SetActive(false);
+			debugUp.gameObject.SetActive(false);
+			debugLeft.gameObject.SetActive(false);
+			debugRight.gameObject.SetActive(false);
+		}
 	}
+
 	public void EatBonus() {
 		if (currentPeople.isBonus) {
 			source.PlayOneShot(bonusAudio);
